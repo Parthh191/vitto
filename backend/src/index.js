@@ -7,24 +7,16 @@ dotenv.config();
 
 const app = express();
 
-console.log("FRONTEND_URL:", process.env.FRONTEND_URL);
+app.use(cors());
 
-app.use(
-  cors({
-    origin: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    credentials: true,
-  })
-);
 
 app.use(express.json());
 
-app.use((req, res, next) => {
-  console.log("Origin:", req.headers.origin);
-  next();
-});
-
 app.use("/applications", applicationRoutes);
+
+app.get("/", (req, res) => {
+  res.json({ success: true });
+});
 
 app.use((req, res) => {
   res.status(404).json({
