@@ -30,6 +30,7 @@ model Applications{
     name       String
     mobile     String
     amount     Float
+    purpose    String 
     language   Language
     status     Status   @default(Pending)
     createdAt  DateTime @default(now())

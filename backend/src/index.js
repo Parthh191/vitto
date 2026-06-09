@@ -14,7 +14,7 @@ app.use(cors({
 }));
 app.use(express.json());
 // 404 handler
-app.use(applicationRoutes);
+app.use("/applications", applicationRoutes);
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });

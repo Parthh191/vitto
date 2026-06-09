@@ -10,6 +10,7 @@ CREATE TABLE "applications" (
     "name" TEXT NOT NULL,
     "mobile" TEXT NOT NULL,
     "amount" DOUBLE PRECISION NOT NULL,
+    "purpose" TEXT NOT NULL,
     "language" "Language" NOT NULL,
     "status" "Status" NOT NULL DEFAULT 'Pending',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

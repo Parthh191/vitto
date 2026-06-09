@@ -86,8 +86,8 @@ export const summaryService=async(req,res)=>{
             success: true,
             message: "Summary fetched successfully",
             data: {
-                total,
-                count,
+                totalApplications: count,
+                totalLoanAmount: total,
                 approved,
                 pending,
                 rejected

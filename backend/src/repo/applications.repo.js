@@ -1,13 +1,13 @@
 import prisma from "../lib/prisma.js" 
 
 export const createApplications=async(applicationData)=>{
-    return await prisma.application.create({
+    return await prisma.applications.create({
         data:applicationData
     });
 }
 
 export const getApplications=async(status)=>{
-    return await prisma.application.findMany({
+    return await prisma.applications.findMany({
         where: status?
         {
             status
@@ -21,7 +21,7 @@ export const getApplications=async(status)=>{
 }
 
 export const updateApplications=async(id,updateStatus)=>{
-    return await prisma.application.update({
+    return await prisma.applications.update({
         where: {
             id
         },
@@ -32,11 +32,11 @@ export const updateApplications=async(id,updateStatus)=>{
 }
 
 export const totalApplication=async()=>{
-    return await prisma.application.count();
+    return await prisma.applications.count();
 }
 
 export const totalAmount=async()=>{
-    const result=await prisma.application.aggregate({
+    const result=await prisma.applications.aggregate({
         _sum:{
             amount:true
         }
@@ -45,25 +45,25 @@ export const totalAmount=async()=>{
 }
 
 export const approvedApplications=async()=>{
-    return await prisma.application.count({
+    return await prisma.applications.count({
         where:{
-            status:"approved"
+            status:"Approved"
         }
     });
 }
 
 export const rejectedApplications=async()=>{
-    return await prisma.application.count({
+    return await prisma.applications.count({
         where:{
-            status:"rejected"
+            status:"Rejected"
         }
     });
 }
 
 export const pendingApplications=async()=>{
-    return await prisma.application.count({
+    return await prisma.applications.count({
         where:{
-            status:"pending"
+            status:"Pending"
         }
     });
 }
