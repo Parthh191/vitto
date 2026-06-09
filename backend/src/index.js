@@ -10,7 +10,8 @@ if(!FRONTEND_URL) {
     process.exit(1);
 }
 app.use(cors({
-    origin: FRONTEND_URL
+    origin: FRONTEND_URL,
+    methods: ['GET', 'POST', 'PATCH'],
 }));
 app.use(express.json());
 // 404 handler
