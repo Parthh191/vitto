@@ -9,6 +9,7 @@ if(!FRONTEND_URL) {
     console.error("FRONTEND_URL is not defined in .env file");
     process.exit(1);
 }
+console.log("FRONTEND_URL:", FRONTEND_URL);
 app.use(cors({
     origin: FRONTEND_URL,
     methods: ['GET', 'POST', 'PATCH'],
