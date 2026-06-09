@@ -50,30 +50,48 @@ export const getApplicationService=async(req,res)=>{
   }
 }
 
-export const updateApplicationService=async(req,res)=>{
-    try{
-        const { id } = req.params;
-        const { status } = req.body;
-        if(!id || !status){
-            return res.status(400).json({
-                success: false,
-                message: "Id and status are required"
-            });
-        }
-        const application = await updateApplications(id, status);
-        res.status(200).json({
-            success: true,
-            message: "Application updated successfully",
-            data: application
-        });
+export const updateApplicationService = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!id || !status) {
+      return res.status(400).json({
+        success: false,
+        message: "Id and status are required",
+      });
     }
-    catch (error) {
+
+    const application = await updateApplications(id, status);
+    const applications = await getApplications();
+    const total = await totalAmount();
+    const count = await totalApplication();
+    const approved = await approvedApplications();
+    const pending = await pendingApplications();
+    const rejected = await rejectedApplications();
+
+    res.status(200).json({
+      success: true,
+      message: "Application updated successfully",
+      data: {
+        updated: application,
+        applications,
+        summary: {
+          totalApplications: count,
+          totalLoanAmount: total,
+          approved,
+          pending,
+          rejected,
+        },
+      },
+    });
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: error.message,
     });
   }
-}
+};
 
 export const summaryService=async(req,res)=>{
     try{
